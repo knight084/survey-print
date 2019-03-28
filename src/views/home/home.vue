@@ -38,10 +38,10 @@
               type="primary"
               @click="handlePrintImg">打印img
       </Button>
-      <Button class="btn-pdf"
+      <!--<Button class="btn-pdf"
               type="primary"
               @click="handlePrintPdf">打印pdf
-      </Button>
+      </Button>-->
     </div>
   </div>
 </template>
@@ -59,7 +59,7 @@
           console.log('printImg');
           const printEl = this.$refs.print;
 
-          html2canvas(printEl)
+          html2canvas(printEl, {logging: false, scale: 1})
             .then(canvas => {
               canvas.toBlob(blob => {
                 const imgUrl = window.URL.createObjectURL(blob);
@@ -69,7 +69,7 @@
                   type: 'image',
                   logging: false,
                   onPrintDialogClose: () => {
-                    window.URL.revokeObjectURL(imgUrl);
+                    // window.URL.revokeObjectURL(imgUrl);
 
                   },
                   onError: e => {
