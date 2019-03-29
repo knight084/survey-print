@@ -58,7 +58,8 @@
     name: 'Home',
     data() {
       return {
-        testImgUrl: 'https://obs-jkgl.obs.cn-north-1.myhuaweicloud.com:443/obs-tjpic/b283c11b-f8e8-4ad8-b7c0-5107cab7fedd.jpg?AccessKeyId=MTK44BF0YO9V8KGMRGF0&Expires=1553858983&Signature=INFiqP%2BreSIqlntqARoRkyeftAU%3D'
+        // testImgUrl: 'https://obs-jkgl.obs.cn-north-1.myhuaweicloud.com:443/obs-tjpic/b283c11b-f8e8-4ad8-b7c0-5107cab7fedd.jpg?AccessKeyId=MTK44BF0YO9V8KGMRGF0&Expires=1553858983&Signature=INFiqP%2BreSIqlntqARoRkyeftAU%3D'
+        testImgUrl: 'http://img1.xcarimg.com/exp/2872/2875/2937/20101220130509576539.jpg'
 
       };
 
@@ -72,7 +73,7 @@
           html2canvas(printEl, {
             logging: false,
             useCORS: true,
-            scale: 5
+            scale: 10
           })
             .then(canvas => {
               canvas.toBlob(blob => {
@@ -135,9 +136,7 @@
 
             });
 
-
         });
-
 
       }
     },
@@ -149,6 +148,7 @@
       img.crossOrigin = 'Anonymous';
 
       img.onload = () => {
+        console.log('loaded');
         ctx.drawImage(img, 0, 0, 60, 60);
 
         console.log('custom drawing done');
