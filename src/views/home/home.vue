@@ -21,9 +21,10 @@
          ref="print">
       <div class="print-title">从业人员预防性健康检查合格证明</div>
       <div class="print-content">
-        <img class="content-avatar" src="../../assets/img/home/avatar.jpg">
+        <img class="content-avatar"
+             :src="testImgUrl">
         <ul class="content-list">
-          <li class="content-item"><span>姓名:</span><span>张三</span></li>
+          <li class="content-item name"><span>姓名:</span><span>张三</span></li>
           <li class="content-item"><span>年龄:</span><span>30</span></li>
           <li class="content-item"><span>身份证号:</span><span>420000198901012020</span></li>
           <li class="content-item"><span>编号:</span><span>20190322001</span></li>
@@ -43,6 +44,8 @@
               @click="handlePrintPdf">打印pdf
       </Button>-->
     </div>
+
+    <canvas id="canvas"></canvas>
   </div>
 </template>
 
@@ -53,13 +56,24 @@
 
   export default {
     name: 'Home',
+    data() {
+      return {
+        testImgUrl: 'https://obs-jkgl.obs.cn-north-1.myhuaweicloud.com:443/obs-tjpic/b283c11b-f8e8-4ad8-b7c0-5107cab7fedd.jpg?AccessKeyId=MTK44BF0YO9V8KGMRGF0&Expires=1553858983&Signature=INFiqP%2BreSIqlntqARoRkyeftAU%3D'
+
+      };
+
+    },
     methods: {
       handlePrintImg() {
         this.$nextTick(() => {
           console.log('printImg');
           const printEl = this.$refs.print;
 
-          html2canvas(printEl, {logging: false, scale: 1})
+          html2canvas(printEl, {
+            logging: false,
+            useCORS: true,
+            scale: 5
+          })
             .then(canvas => {
               canvas.toBlob(blob => {
                 const imgUrl = window.URL.createObjectURL(blob);
@@ -126,6 +140,21 @@
 
 
       }
+    },
+    mounted() {
+      const canvas = document.querySelector('#canvas');
+      const ctx = canvas.getContext('2d');
+      const img = new Image();
+      img.src = this.testImgUrl;
+      img.crossOrigin = 'Anonymous';
+
+      img.onload = () => {
+        ctx.drawImage(img, 0, 0, 60, 60);
+
+        console.log('custom drawing done');
+
+      };
+
     }
   }
 </script>
