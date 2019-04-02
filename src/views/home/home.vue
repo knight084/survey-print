@@ -58,8 +58,7 @@
     name: 'Home',
     data() {
       return {
-        testImgUrl: 'https://obs-jkgl.obs.cn-north-1.myhuaweicloud.com/obs-tjpic/b283c11b-f8e8-4ad8-b7c0-5107cab7fedd.jpg?AccessKeyId=MTK44BF0YO9V8KGMRGF0&Expires=1553862972&Signature=l2z3Vo%2BaFJe6ZLB3jySCy0TywTk%3D'
-        // testImgUrl: 'http://img1.xcarimg.com/exp/2872/2875/2937/20101220130509576539.jpg'
+        testImgUrl: 'http://img1.xcarimg.com/exp/2872/2875/2937/20101220130509576539.jpg'
 
       };
 
